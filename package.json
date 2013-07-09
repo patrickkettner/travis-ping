@@ -1,0 +1,29 @@
+{
+  "name": "travis-ping",
+  "preferGlobal": true,
+  "version": "0.1.0",
+  "description": "manually trigger travis builds",
+  "main": "index.js",
+  "bin": {
+    "travis-ping": "./bin/travis-ping"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/patrickkettner/travis-ping.git"
+  },
+  "keywords": [
+    "travis",
+    "travis-ci",
+    "travisci",
+    "manually",
+    "trigger"
+  ],
+  "author": "Patrick Kettner",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/patrickkettner/travis-ping/issues"
+  },
+  "dependencies": {
+    "concat-stream": "~1.0.0"
+  }
+}
