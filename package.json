@@ -24,6 +24,7 @@
     "url": "https://github.com/patrickkettner/travis-ping/issues"
   },
   "dependencies": {
-    "concat-stream": "~1.0.0"
+    "travis-ci": "~1.0.1",
+    "prompt": "~0.2.11"
   }
 }
