@@ -9,24 +9,18 @@ web scraper).
 #### requirements
 
 - A repo that has testing enabled and at least one test previously ran
-- Your travis-ci token. There are a few ways to get this
-  1. Use the [travis gem](https://github.com/travis-ci/travis#installation) and run ```travis token```
-  2. Inspect the http headers in the travis web app.
-      * Go to [travis.ci](https://travis-ci.org/profile), with your web tools open
-      * Check the headers on the requests, some will have a 'Authorization' key, with
-      a value of something along the lines of 'token RaNd0mHaSh_Dqaa'
-      ![dev tools with Auth header](http://cl.ly/image/2b1S1r0q3H0Z/Untitled.png)
+- Github credentials for an account with access to the travis repo
 
 ### Use it as a node module
 
 ```javascript
   var travisPing = require('travis-ping');
-  travisPing.ping('h$RWfBJietLaZXSBr2byv3', 'patrickkettner/travis-ping', function(value) {▸
-    console.log(value)
+  travisPing.ping('patrickkettner', ''mYr33lP4$5w0rd101jk, 'patrickkettner/travis-ping', function(travisResponse) {
+    console.log(travisResponse)
   })
 ```
 ### or as a command line tool
 
 ```shell
-  travis-ping h$RWfBJietLaZXSBr2byv3 patrickkettner/travis-ping
+  travis-ping patrickkettner/travis-ping
 ```
