@@ -15,7 +15,7 @@ web scraper).
 
 ```javascript
   var travisPing = require('travis-ping');
-  travisPing.ping('patrickkettner', ''mYr33lP4$5w0rd101jk, 'patrickkettner/travis-ping', function(travisResponse) {
+  travisPing.ping('patrickkettner', 'mYr33lP4$5w0rd101jk', 'patrickkettner/travis-ping', function(travisResponse) {
     console.log(travisResponse)
   })
 ```
