@@ -1,7 +1,7 @@
 {
   "name": "travis-ping",
   "preferGlobal": true,
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "manually trigger travis builds",
   "main": "index.js",
   "bin": {
@@ -19,7 +19,7 @@
     "trigger"
   ],
   "author": "Patrick Kettner",
-  "license": "BSD",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/patrickkettner/travis-ping/issues"
   },
