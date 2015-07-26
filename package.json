@@ -1,7 +1,7 @@
 {
   "name": "travis-ping",
   "preferGlobal": true,
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "manually trigger travis builds",
   "main": "index.js",
   "bin": {
@@ -24,7 +24,8 @@
     "url": "https://github.com/patrickkettner/travis-ping/issues"
   },
   "dependencies": {
-    "travis-ci": "~1.0.1",
-    "prompt": "~0.2.11"
+    "commander": "^2.8.1",
+    "prompt": "~0.2.11",
+    "travis-ci": "~2.0.3"
   }
 }

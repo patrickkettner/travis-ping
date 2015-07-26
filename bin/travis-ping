@@ -1,3 +1,15 @@
 #!/usr/bin/env node
 
-require("../index.js").interpret(process.argv);
+var settings = require('commander');
+
+settings
+  .usage('[repository] [options]')
+  .option('-t, --token [token]', 'GitHub personal access token')
+  .option('--pro', 'Connect to Travis-CI Pro API')
+  .option('-b, --branch [branch]', 'Use latest build of this branch')
+  .option('-p, --push', 'Use latest build of a push event')
+  .option('--pull-request', 'Use latest build of a pull request event')
+  .parse(process.argv);
+
+require("../index.js").interpret(settings.args, settings);
+
