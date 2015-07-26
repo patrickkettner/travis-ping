@@ -5,26 +5,26 @@ prompt.delimiter = '';
 
 var getCredentials = function (cb) {
   prompt.start();
-   prompt.get([{
-        name: 'username',
-        message: 'github username',
-        required: true
-      }, {
-        name: 'password',
-        message: 'github password',
-        hidden: true
-      }], cb);
+  prompt.get([{
+    name: 'username',
+    message: 'github username',
+    required: true
+  }, {
+    name: 'password',
+    message: 'github password',
+    hidden: true
+  }], cb);
 };
 
-var travisPing = function(username, password, repo, cb) {
+var travisPing = function(credentials, repo, cb) {
   var travis = new Travis({
-    version: '2.0.0'
+    version: '2.0.0',
+    pro: credentials.pro
   });
 
-  travis.authenticate({
-    username: username,
-    password: password
-  }, function (err, res) {
+  delete credentials.pro;
+
+  travis.authenticate(credentials, function (err, res) {
     if (err) {
       return cb(err);
     }
@@ -35,6 +35,7 @@ var travisPing = function(username, password, repo, cb) {
       if (err) {
         return cb(err);
       }
+      
       travis.requests({
         build_id: res.builds[0].id
       }, cb);
@@ -42,30 +43,43 @@ var travisPing = function(username, password, repo, cb) {
   });
 };
 
-exports.ping = function(username, password, repo, cb) {
-  if (!username || !password || !repo) throw "You need to specify your github credentials and the repo you would like to rebuild (eg patrickkettner/travis-ping)";
+exports.ping = function(credentials, repo, cb) {
+  if (!credentials || !repo) throw "You need to specify your github credentials and the repo you would like to rebuild (eg patrickkettner/travis-ping)";
 
-  travisPing(username, password, repo, cb);
+  travisPing(credentials, repo, cb);
 };
 
-exports.interpret = function(args) {
-  var repo = args[2];
+exports.interpret = function(args, settings) {
+  var repo = args[0];
   if (!repo) {
     console.warn('you need to specify the repo you want to ping');
     process.exit(1);
   }
-  getCredentials(function (err, res) {
-    if (err) {
-      console.warn('request for github credentials failed');
-      process.exit(1);
-    }
-    travisPing(res.username, res.password, repo, function(err, res) {
+  
+  if (!settings) settings = {};
+
+  var ping = function(credentials) {
+    credentials.pro = settings.pro;
+    
+    travisPing(credentials, repo, function(err, res) {
       if (err) {
         console.warn(err);
         process.exit(1);
       }
       console.log(res.flash[0]);
     });
-  });
+  };
+  
+  if (settings.token) {
+    ping({github_token: settings.token});
+  } else {
+    getCredentials(function (err, res) {
+      if (err) {
+        console.warn('request for github credentials failed');
+        process.exit(1);
+      }
+      ping({username: res.username, password: res.password});
+    });
+  }
 };
 
