@@ -35,11 +35,12 @@ web scraper).
 When run from the commandline, you are asked for your username and credentials.
 
 Alternatively you may supply a [GitHub personal access token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
-with `--token [token]` and use the tool without interaction. When using as a module
-set `{github_token: token}` instead of the username and password;
+with `--token [token]` or the `GITHUB_TOKEN` environment variable and use the tool
+without interaction. When using as a module set `{github_token: token}` instead of
+the username and password.
 
 To connect to the Pro API ([travis-ci.com](http://travis-ci.com)), use the `--pro`
-option. As module, add `pro: true` to the credentials;
+option. As module, add `pro: true` to the credentials.
 
 ## Filter
 

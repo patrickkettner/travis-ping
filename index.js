@@ -102,8 +102,10 @@ exports.interpret = function(args, settings) {
     });
   };
   
-  if (settings.token) {
-    ping({github_token: settings.token});
+  var token = settings.token || process.env.GITHUB_TOKEN || process.env.GH_TOKEN;
+  
+  if (token) {
+    ping({github_token: token});
   } else {
     getCredentials(function (err, res) {
       if (err) {
