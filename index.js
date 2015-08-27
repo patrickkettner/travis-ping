@@ -59,9 +59,7 @@ var travisPing = function(credentials, repo, filter, cb) {
           return cb(err);
         }
         
-        travis.requests.post({
-          build_id: build.id
-        }, function(err, res) {
+        travis.builds(build.id).restart.post({}, function(err, res) {
           if (!err && !res.result) err = res.flash[0];
           cb(err, build);
         });
