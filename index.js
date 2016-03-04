@@ -39,7 +39,11 @@ var findBuild = function(travis, builds, commits, filter, cb) {
 var travisPing = function(credentials, repo, filter, cb) {
   var travis = new Travis({
     version: '2.0.0',
-    pro: credentials.pro
+    pro: credentials.pro,
+    headers: {
+        'user-agent': 'MyClient/1.0.0',
+        'accept': 'application/vnd.travis-ci.2+json'
+    }
   });
 
   delete credentials.pro;
