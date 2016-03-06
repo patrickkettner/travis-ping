@@ -3,6 +3,8 @@ var prompt = require('prompt');
 prompt.message = '';
 prompt.delimiter = '';
 
+var info = require('./package.json');
+
 var getCredentials = function (cb) {
   prompt.start();
   prompt.get([{
@@ -41,7 +43,7 @@ var travisPing = function(credentials, repo, filter, cb) {
     version: '2.0.0',
     pro: credentials.pro,
     headers: {
-        'user-agent': 'MyClient/1.0.0',
+        'user-agent': 'TravisPing/' + info.version,
         'accept': 'application/vnd.travis-ci.2+json'
     }
   });
