@@ -1,7 +1,7 @@
 {
   "name": "travis-ping",
   "preferGlobal": true,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "manually trigger travis builds",
   "main": "index.js",
   "bin": {
