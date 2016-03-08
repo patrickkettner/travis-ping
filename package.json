@@ -26,6 +26,6 @@
   "dependencies": {
     "commander": "^2.8.1",
     "prompt": "~0.2.11",
-    "travis-ci": "~2.0.3"
+    "travis-ci": "~2.1.0"
   }
 }
